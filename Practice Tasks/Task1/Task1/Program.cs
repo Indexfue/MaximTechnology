@@ -4,11 +4,16 @@
     {
         public static void Main()
         {
-            List<string> testStrings = new List<string>() { "a", "abcdef!ялюблюяблоки", "abcde", "school", "maxim", "tech", "draniki so smetanoi"};
+            List<string> testStrings = new List<string>() { "a", "abcdef", "abcde", "school", "maxim", "tech", "draniki so smetanoi"};
 
             foreach (string str in testStrings)
             {
-                Console.WriteLine($"{StringReverser.SplitAndReverse(str)} is even: {str.Length % 2 == 0}");
+                StringReverserContext context = StringReverser.SplitAndReverse(str);
+                Console.WriteLine($"{context.Result}");
+                foreach (KeyValuePair<char, int> pair in context.CharCount)
+                {
+                    Console.WriteLine($"{pair.Key} - {pair.Value}");
+                }
             }
         }
     }

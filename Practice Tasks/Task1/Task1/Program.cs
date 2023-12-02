@@ -10,6 +10,7 @@
             {
                 StringReverserContext context = StringReverser.SplitAndReverse(str);
                 Console.WriteLine($"{context.Result}");
+                Console.WriteLine($"Максимальная строка, где края - гласные: {context.MaxVowelString}");
                 foreach (KeyValuePair<char, int> pair in context.CharCount)
                 {
                     Console.WriteLine($"{pair.Key} - {pair.Value}");

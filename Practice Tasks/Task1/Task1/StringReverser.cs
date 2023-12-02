@@ -40,7 +40,7 @@
             if (disallowedChars.Count > 0)
             {
                 throw new ArgumentException(
-                    $"These disallowed chars was in string: {new string(disallowedChars.ToArray())}");
+                    $"These disallowed chars was in {str} string: {new string(disallowedChars.ToArray())}");
             }
             return true;
         }

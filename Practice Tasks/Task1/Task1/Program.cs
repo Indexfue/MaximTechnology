@@ -4,12 +4,9 @@
     {
         public static void Main()
         {
-            List<string> testStrings = new List<string>() { "a", "abcdef!ялюблюяблоки", "abcde", "school", "maxim", "tech", "draniki so smetanoi"};
-
-            foreach (string str in testStrings)
-            {
-                Console.WriteLine($"{StringReverser.SplitAndReverse(str)} is even: {str.Length % 2 == 0}");
-            }
+            Console.Write("Введите строку: ");
+            string input = Console.ReadLine();
+            Console.WriteLine(StringReverser.ReverseByParity(input));
         }
     }
 }

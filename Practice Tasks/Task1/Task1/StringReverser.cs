@@ -3,17 +3,26 @@
     public static class StringReverser
     {
         private static char[] s_allowedChars = "abcdefghijklmnopqrstuvwxyz".ToCharArray();
-        
-        public static string SplitAndReverse(string str)
+
+        /// <summary>
+        /// Reverse the odd string and adding to original one, or reversing halves of even string and concatenate them
+        /// </summary>
+        /// <param name="str">Original string</param>
+        /// <returns>Reversed string</returns>
+        /// <exception cref="NullReferenceException"></exception>
+        public static string ReverseByParity(string str)
         {
-            if (IsStringCorrect(str))
+            if (str.Equals(string.Empty) || str == null)
+                throw new NullReferenceException("String that given was empty");
+            
+            if (IsStringCorrect(str)) 
             {
                 if (str.Length % 2 == 0)
                 {
-                    int stringLength = str.Length / 2;
-                    string firstPart = str.Substring(0, stringLength).ReverseString();
-                    string secondPart = str.Substring(stringLength, stringLength).ReverseString();
-                
+                    int midPoint = str.Length / 2;
+                    string firstPart = str.Substring(0, midPoint).ReverseString();
+                    string secondPart = str.Substring(midPoint, midPoint).ReverseString();
+
                     return new string(firstPart + secondPart);
                 }
                 return str.Insert(0, str.ReverseString());

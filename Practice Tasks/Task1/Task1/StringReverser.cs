@@ -4,6 +4,9 @@
     {
         public static string SplitAndReverse(string str)
         {
+            if (str.Equals(string.Empty) || str == null)
+                throw new NullReferenceException("String that given was empty");
+            
             if (str.Length % 2 == 0)
             {
                 int stringLength = str.Length / 2;

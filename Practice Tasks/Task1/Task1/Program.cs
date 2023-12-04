@@ -6,7 +6,15 @@
         {
             Console.Write("Введите строку: ");
             string input = Console.ReadLine();
-            Console.WriteLine(StringReverser.ReverseByParity(input));
+          
+            StringReverserContext context = StringReverser.ReverseByParity(input);
+          
+            Console.WriteLine(context.Result);
+          
+            foreach (KeyValuePair<char, int> pair in context.CharCount)
+            {
+                Console.WriteLine($"{pair.Key} - {pair.Value}");
+            }
         }
     }
 }

@@ -1,41 +1,30 @@
-﻿namespace Task1
+namespace Task1
 {
     public static class StringReverser
     {
         private static char[] s_allowedChars = "abcdefghijklmnopqrstuvwxyz".ToCharArray();
-
-        /// <summary>
-        /// Reverse the odd string and adding to original one, or reversing halves of even string and concatenate them
-        /// </summary>
-        /// <param name="str">Original string</param>
-        /// <returns>Reversed string</returns>
-        /// <exception cref="NullReferenceException"></exception>
-        public static string ReverseByParity(string str)
+        
+        public static StringReverserContext SplitAndReverse(string str)
         {
-            if (str.Equals(string.Empty) || str == null)
-                throw new NullReferenceException("String that given was empty");
-            
-            if (IsStringCorrect(str)) 
+            if (IsStringCorrect(str))
             {
+                string newString;
+                
                 if (str.Length % 2 == 0)
                 {
-                    int midPoint = str.Length / 2;
-                    string firstPart = str.Substring(0, midPoint).ReverseString();
-                    string secondPart = str.Substring(midPoint, midPoint).ReverseString();
-
-                    return new string(firstPart + secondPart);
+                    int stringLength = str.Length / 2;
+                    string firstPart = str.Substring(0, stringLength).ReverseString();
+                    string secondPart = str.Substring(stringLength, stringLength).ReverseString();
+                
+                    newString = new string(firstPart + secondPart);
+                    return new StringReverserContext(newString);
                 }
-                return str.Insert(0, str.ReverseString());
+                newString = str.Insert(0, str.ReverseString());
+                return new StringReverserContext(newString);
             }
-            return string.Empty;
+            return null;
         }
 
-        /// <summary>
-        /// Checks if any of disallowed chars in original string
-        /// </summary>
-        /// <param name="str"></param>
-        /// <returns>True - if disallowed chars not found in string</returns>
-        /// <exception cref="ArgumentException">If any of disallowed chars in string</exception>
         private static bool IsStringCorrect(string str)
         {
             List<char> disallowedChars = new List<char>();
@@ -51,7 +40,7 @@
             if (disallowedChars.Count > 0)
             {
                 throw new ArgumentException(
-                    $"These disallowed chars was in string: {new string(disallowedChars.ToArray())}");
+                    $"These disallowed chars was in {str} string: {new string(disallowedChars.ToArray())}");
             }
             return true;
         }

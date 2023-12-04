@@ -4,7 +4,7 @@
     {
         private static char[] s_allowedChars = "abcdefghijklmnopqrstuvwxyz".ToCharArray();
         
-        public static StringReverserContext SplitAndReverse(string str)
+        public static StringReverserContext ReverseByParity(string str)
         {
             if (IsStringCorrect(str))
             {

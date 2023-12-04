@@ -4,17 +4,17 @@
     {
         public static void Main()
         {
-            List<string> testStrings = new List<string>() { "a", "abcdef", "abcde", "school", "maxim", "tech", "draniki so smetanoi"};
-
-            foreach (string str in testStrings)
+            Console.Write("Введите строку: ");
+            string input = Console.ReadLine();
+          
+            StringReverserContext context = StringReverser.ReverseByParity(input);
+            
+            Console.WriteLine(context.Result);
+            Console.WriteLine($"Максимальная строка, где края - гласные: {context.MaxVowelString}");
+          
+            foreach (KeyValuePair<char, int> pair in context.CharCount)
             {
-                StringReverserContext context = StringReverser.SplitAndReverse(str);
-                Console.WriteLine($"{context.Result}");
-                Console.WriteLine($"Максимальная строка, где края - гласные: {context.MaxVowelString}");
-                foreach (KeyValuePair<char, int> pair in context.CharCount)
-                {
-                    Console.WriteLine($"{pair.Key} - {pair.Value}");
-                }
+                Console.WriteLine($"{pair.Key} - {pair.Value}");
             }
         }
     }

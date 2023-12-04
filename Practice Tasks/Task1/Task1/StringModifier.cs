@@ -1,4 +1,6 @@
-﻿namespace Task1
+﻿using Task1.Utility;
+
+namespace Task1
 {
     public sealed class StringModifier
     {
@@ -13,7 +15,7 @@
         public StringModifier(string str, SortingMode sortingMode)
         {
             Result = ReverseByParity(str);
-            //SortedResult =
+            SortedResult = String.Join("", Sorter.Sort<char>(Result.ToCharArray().ToList(), sortingMode));
             MaxVowelString = GetMaxVowelString(Result);
             CharCount = GetCharCount(Result);
         }
@@ -76,12 +78,6 @@
         private string GetMaxVowelString(string str)
         {
             return str.Trim(_consonantLetters);
-        }
-
-        public enum SortingMode
-        {
-            QuickSort,
-            TreeSort
         }
     }
 }

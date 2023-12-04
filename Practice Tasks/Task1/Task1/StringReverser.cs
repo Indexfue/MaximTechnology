@@ -4,7 +4,7 @@ namespace Task1
     {
         private static char[] s_allowedChars = "abcdefghijklmnopqrstuvwxyz".ToCharArray();
         
-        public static StringReverserContext SplitAndReverse(string str)
+        public static string ReverseByParity(string str)
         {
             if (IsStringCorrect(str))
             {
@@ -17,10 +17,10 @@ namespace Task1
                     string secondPart = str.Substring(stringLength, stringLength).ReverseString();
                 
                     newString = new string(firstPart + secondPart);
-                    return new StringReverserContext(newString);
+                    return new string(newString);
                 }
                 newString = str.Insert(0, str.ReverseString());
-                return new StringReverserContext(newString);
+                return new string(newString);
             }
             return null;
         }

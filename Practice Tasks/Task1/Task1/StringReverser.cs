@@ -30,6 +30,12 @@
             return string.Empty;
         }
 
+        /// <summary>
+        /// Checks if any of disallowed chars in original string
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns>True - if disallowed chars not found in string</returns>
+        /// <exception cref="ArgumentException">If any of disallowed chars in string</exception>
         private static bool IsStringCorrect(string str)
         {
             List<char> disallowedChars = new List<char>();

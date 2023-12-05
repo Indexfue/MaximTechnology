@@ -2,7 +2,7 @@
 {
     public enum SortingMode
     {
-        QuickSort,
+        QuickSort = 1,
         TreeSort
     }
 }

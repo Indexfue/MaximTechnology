@@ -1,6 +1,4 @@
-﻿using System.Collections;
-
-namespace Task1.Utility.SortingMethods
+﻿namespace Task1.Utility.Sorting.SortingMethods
 {
     public sealed class TreeSort<T>: ISortMethod<T> where T: IComparable
     {

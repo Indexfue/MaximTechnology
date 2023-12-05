@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using Task1.Utility.SortingMethods;
+﻿using Task1.Utility.Sorting.SortingMethods;
 
-namespace Task1.Utility
+namespace Task1.Utility.Sorting
 {
     public static class Sorter
     {

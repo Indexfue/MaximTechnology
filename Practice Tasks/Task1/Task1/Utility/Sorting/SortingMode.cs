@@ -1,4 +1,4 @@
-﻿namespace Task1.Utility
+﻿namespace Task1.Utility.Sorting
 {
     public enum SortingMode
     {

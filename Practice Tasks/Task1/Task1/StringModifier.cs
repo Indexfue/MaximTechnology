@@ -25,7 +25,7 @@ namespace Task1
             SortedResult = String.Join("", Sorter.Sort<char>(Result.ToCharArray().ToList(), sortingMode));
             MaxVowelString = GetMaxVowelString(Result);
             CharCount = GetCharCount(Result);
-            RandomRemovedString = RemoveRandomCharacter(str).Result;
+            RandomRemovedString = RemoveRandomCharacter(Result).Result;
         }
         
         private string ReverseByParity(string str)

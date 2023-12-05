@@ -1,9 +1,15 @@
-﻿namespace Task1
+namespace Task1
 {
     public static class StringReverser
     {
         private static char[] s_allowedChars = "abcdefghijklmnopqrstuvwxyz".ToCharArray();
         
+        /// <summary>
+        /// Reverse the odd string and adding to original one, or reversing halves of even string and concatenate them
+        /// </summary>
+        /// <param name="str">Original string</param>
+        /// <returns>Reversed string</returns>
+        /// <exception cref="NullReferenceException"></exception>
         public static StringReverserContext ReverseByParity(string str)
         {
             if (IsStringCorrect(str))
@@ -12,15 +18,15 @@
                 
                 if (str.Length % 2 == 0)
                 {
-                    int stringLength = str.Length / 2;
-                    string firstPart = str.Substring(0, stringLength).ReverseString();
-                    string secondPart = str.Substring(stringLength, stringLength).ReverseString();
+                    int midPoint = str.Length / 2;
+                    string firstPart = str.Substring(0, midPoint).ReverseString();
+                    string secondPart = str.Substring(midPoint, midPoint).ReverseString();
                 
                     newString = new string(firstPart + secondPart);
-                    return new StringReverserContext(newString);
+                    return new string(newString);
                 }
                 newString = str.Insert(0, str.ReverseString());
-                return new StringReverserContext(newString);
+                return new string(newString);
             }
             return null;
         }

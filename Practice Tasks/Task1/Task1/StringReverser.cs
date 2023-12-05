@@ -10,7 +10,7 @@ namespace Task1
         /// <param name="str">Original string</param>
         /// <returns>Reversed string</returns>
         /// <exception cref="NullReferenceException"></exception>
-        public static string ReverseByParity(string str)
+        public static StringReverserContext ReverseByParity(string str)
         {
             if (IsStringCorrect(str))
             {

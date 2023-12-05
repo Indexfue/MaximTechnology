@@ -1,4 +1,5 @@
 ﻿using Task1.Utility;
+using Task1.Utility.Networking;
 using Task1.Utility.Sorting;
 
 namespace Task1
@@ -22,7 +23,7 @@ namespace Task1
             Console.WriteLine(modifier.Result);
             Console.WriteLine($"Максимальная строка, где края - гласные: {modifier.MaxVowelString}");
             Console.WriteLine($"Отсортированная строка: {modifier.SortedResult}");
-          
+            Console.WriteLine($"Строка с удаленными символами: {modifier.RandomRemovedString}");
             foreach (KeyValuePair<char, int> pair in modifier.CharCount)
             {
                 Console.WriteLine($"{pair.Key} - {pair.Value}");

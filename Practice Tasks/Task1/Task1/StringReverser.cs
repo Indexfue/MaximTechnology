@@ -4,6 +4,12 @@
     {
         private static char[] s_allowedChars = "abcdefghijklmnopqrstuvwxyz".ToCharArray();
         
+        /// <summary>
+        /// Reverse the odd string and adding to original one, or reversing halves of even string and concatenate them
+        /// </summary>
+        /// <param name="str">Original string</param>
+        /// <returns>Reversed string</returns>
+        /// <exception cref="NullReferenceException"></exception>
         public static StringReverserContext ReverseByParity(string str)
         {
             if (IsStringCorrect(str))

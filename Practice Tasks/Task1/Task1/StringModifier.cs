@@ -1,4 +1,4 @@
-﻿using Task1.Utility;
+﻿using Task1.Utility.Networking;
 using Task1.Utility.Sorting;
 
 namespace Task1
@@ -8,17 +8,24 @@ namespace Task1
         private char[] _allowedChars = "abcdefghijklmnopqrstuvwxyz".ToCharArray();
         private char[] _consonantLetters = "bcdfghjklmnpqrstvwxz".ToCharArray();
 
-        public string? Result { get; }
+        public string Result { get; }
         public string SortedResult { get; }
         public string MaxVowelString { get; }
+        public string RandomRemovedString { get; }
         public Dictionary<char, int> CharCount { get; }
         
-        public StringModifier(string str, SortingMode sortingMode)
+        public StringModifier(string? str, SortingMode sortingMode)
         {
+            if (string.IsNullOrEmpty(str) || string.IsNullOrWhiteSpace(str))
+            {
+                throw new NullReferenceException("Given string was null/empty/full of whitespaces");
+            }
+            
             Result = ReverseByParity(str);
             SortedResult = String.Join("", Sorter.Sort<char>(Result.ToCharArray().ToList(), sortingMode));
             MaxVowelString = GetMaxVowelString(Result);
             CharCount = GetCharCount(Result);
+            RandomRemovedString = RemoveRandomCharacter(str).Result;
         }
         
         private string ReverseByParity(string str)
@@ -58,7 +65,7 @@ namespace Task1
             return true;
         }
         
-        private Dictionary<char, int> GetCharCount(string? str)
+        private Dictionary<char, int> GetCharCount(string str)
         {
             if (str == null || str.Equals(string.Empty))
                 throw new NullReferenceException("String that given was null");
@@ -74,6 +81,23 @@ namespace Task1
                 charCount.Add(strChar, 1);
             }
             return charCount;
+        }
+        
+        private async Task<string> RemoveRandomCharacter(string str)
+        {
+            RandomGenerator randomNumberGenerator = new RandomGenerator();
+            int stringLength = str.Length;
+
+            int randomIndex = await randomNumberGenerator.GetRandomNumber(stringLength);
+
+            if (randomIndex >= stringLength)
+            {
+                throw new IndexOutOfRangeException("Index of deleting char was greater than string length");
+            }
+
+            char[] resultArray = str.ToCharArray();
+            resultArray[randomIndex] = ' ';
+            return new string(resultArray);
         }
 
         private string GetMaxVowelString(string str)

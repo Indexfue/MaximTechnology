@@ -1,5 +1,4 @@
-﻿using System.Net;
-using ASPNETTask.Utility.Sorting;
+﻿using ASPNETTask.Utility.Sorting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ASPNETTask.Controllers;
@@ -8,9 +7,23 @@ namespace ASPNETTask.Controllers;
 [Route("[controller]")]
 public class StringModifierController : ControllerBase
 {
+    private readonly IConfiguration _configuration;
+    
+     public StringModifierController(IConfiguration configuration) 
+     {
+         _configuration = configuration;
+     }
+    
     [HttpGet]
     public IActionResult GetProcessedString(string input, SortingMode sortingMode = SortingMode.QuickSort)
     {
+        AppSettings appSettings = _configuration.GetSection("Settings").Get<AppSettings>();
+
+        if (appSettings?.BlackList?.Contains(input) == true)
+        {
+            return BadRequest($"HTTP ошибка 400 Bad Request. Строка находится в Чёрном списке.");
+        }
+        
         try
         {
             StringModifier modifier = new StringModifier(input, sortingMode);

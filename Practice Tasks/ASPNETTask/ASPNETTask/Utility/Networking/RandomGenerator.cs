@@ -5,13 +5,13 @@
         private readonly HttpClient _client = new HttpClient();
         private readonly Random _random = new Random();
 
-        private readonly string _requestUri = "https://www.randomnumberapi.com/api/v1.0/random?min=0&";
+        public static string? RequestUri { get; set; }
 
         public async Task<int> GetRandomNumber(int maxValue)
         {
             try
             {
-                HttpResponseMessage response = await _client.GetAsync(_requestUri + $"max={maxValue}&count=1");
+                HttpResponseMessage response = await _client.GetAsync(RequestUri + $"max={maxValue}&count=1");
                 if (response.IsSuccessStatusCode)
                 {
                     string result = await response.Content.ReadAsStringAsync();

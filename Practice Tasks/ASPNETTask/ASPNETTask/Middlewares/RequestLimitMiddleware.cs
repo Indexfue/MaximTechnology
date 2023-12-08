@@ -12,7 +12,7 @@
         {
             _next = next;
             _parallelLimit = configuration.GetValue<int>("Settings:ParallelLimit");
-            _semaphore = new SemaphoreSlim(0, _parallelLimit);
+            _semaphore = new SemaphoreSlim(_parallelLimit, _parallelLimit);
         }
 
         public async Task InvokeAsync(HttpContext context)

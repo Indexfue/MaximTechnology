@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using ASPNETTask;
 using ASPNETTask.Middlewares;
 
@@ -8,6 +9,11 @@ var configuration = builder.Configuration;
 var appSettings = configuration.GetSection("AppSettings").Get<AppSettings>();
 
 builder.Services.Configure<AppSettings>(configuration.GetSection("AppSettings"));
+
+builder.Services
+    .AddControllersWithViews() // or AddControllers() in a Web API
+    .AddJsonOptions(options => 
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

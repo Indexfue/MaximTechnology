@@ -15,23 +15,18 @@ public class StringModifierController : ControllerBase
      }
     
     [HttpGet]
-    public IActionResult GetProcessedString(string input, SortingMode sortingMode = SortingMode.QuickSort)
+    public IActionResult GetProcessedString(string? input, SortingMode sortingMode = SortingMode.QuickSort)
     {
         AppSettings appSettings = _configuration.GetSection("Settings").Get<AppSettings>();
-
-        if (appSettings?.BlackList?.Contains(input) == true)
-        {
-            return BadRequest($"HTTP ошибка 400 Bad Request. Строка находится в Чёрном списке.");
-        }
         
         try
         {
-            StringModifier modifier = new StringModifier(input, sortingMode);
-
-            if (modifier.Result == null)
+            if (appSettings?.BlackList?.Contains(input) == true)
             {
-                return BadRequest($"HTTP ошибка 400 Bad Request. Строка содержит недопустимые символы.");
+                return BadRequest($"HTTP ошибка 400 Bad Request. Строка находится в Чёрном списке.");
             }
+        
+            StringModifier modifier = new StringModifier(input, sortingMode);
 
             var result = new
             {

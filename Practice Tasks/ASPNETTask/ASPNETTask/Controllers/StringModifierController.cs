@@ -9,16 +9,11 @@ namespace ASPNETTask.Controllers;
 public class StringModifierController : ControllerBase
 {
     [HttpGet]
-    public IActionResult GetProcessedString(string input, SortingMode sortingMode = SortingMode.QuickSort)
+    public IActionResult GetProcessedString(string? input, SortingMode sortingMode = SortingMode.QuickSort)
     {
         try
         {
             StringModifier modifier = new StringModifier(input, sortingMode);
-
-            if (modifier.Result == null)
-            {
-                return BadRequest($"HTTP ошибка 400 Bad Request. Строка содержит недопустимые символы.");
-            }
 
             var result = new
             {
